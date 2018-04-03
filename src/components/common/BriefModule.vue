@@ -1,3 +1,4 @@
+<!--发现页面问题条目组件-->
 <template>
   <div class="brief-wrapper">
     <div class="title">
@@ -17,7 +18,10 @@
         </div>
         <div class="foot">
           <i class="iconfont icon-pluslarge"><a> 关注问题 </a>&ensp;</i>
-          <i class="iconfont icon-speechbubble"><a> 1132 条评论 </a>&ensp;</i>
+          <i class="iconfont icon-speechbubble" v-if="!isShowComment" @click="isShowComment = true">
+            <a> 1132 条评论 </a>&ensp;
+          </i>
+          <i class="iconfont icon-speechbubble" v-else @click="isShowComment = false"><a> 收起评论 </a>&ensp;</i>
           <i class="iconfont icon-aixin"><a> 感谢 </a>&ensp;</i>
           <i class="iconfont icon-fenxiang"><a> 分享 </a>&ensp;</i>
           <i class="iconfont icon-shuqianbookmark29"><a> 收藏 </a></i>
@@ -25,7 +29,7 @@
           <i class="iconfont icon-point"><a> 举报 </a></i>
           <i class="iconfont icon-point"><a> 作者保留权利</a></i>
         </div>
-        <div class="comment">
+        <div class="comment" v-if="isShowComment">
           <div class="triangle"></div>
           <div class="comment-item" v-for="i in 10">
             <div class="avatar">
@@ -46,6 +50,17 @@
               </div>
             </div>
           </div>
+          <div class="comment-paging">
+            <paging :total='100' :display="10"
+                          :current-page='1'></paging>
+          </div>
+          <div class="comment-edit">
+            <input type="text" placeholder="写下你的评论...">
+          </div>
+          <div class="comment-btn">
+            <span>取消</span> &ensp;
+            <button type="button" class="comment-affirm-btn">评论</button>
+          </div>
         </div>
       </div>
     </div>
@@ -53,7 +68,15 @@
 </template>
 
 <script>
+  import Paging from './Paging'
+
   export default {
+    data() {
+      return {
+        isShowComment: false,
+      }
+    },
+    components: {Paging}
   }
 </script>
 
@@ -131,7 +154,7 @@
       border: 1px solid #ddd;
       border-radius: 10px;
       margin-top: 20px;
-      padding: 6px 12px 12px 12px;
+      padding: 6px 12px 20px 12px;
     }
     .triangle {
       width: 10px;
@@ -174,6 +197,55 @@
       color: #999;
       display: flex;
       justify-content: space-between;
+    }
+    .comment-paging {
+      height: 50px;
+      border-top: 1px solid #eee;
+      border-bottom: 2px solid #eee;
+    }
+    .comment-edit {
+      height: 40px;
+      text-align: center;
+    }
+    .comment-edit input {
+      display: block;
+      margin: 12px auto;
+      width: 90%;
+      min-height: 34px;
+      outline: 0;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 8px 16px;
+    }
+    .comment-btn {
+      text-align: right;
+      box-sizing: border-box;
+      padding-top: 6px;
+    }
+    .comment-btn span {
+      color: #999;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .comment-btn span:hover {
+      color: #666;
+    }
+    .comment-btn button {
+      font-size: 14px;
+      color: #fff;
+      height: 32px;
+      text-decoration: none!important;
+      display: inline-block;
+      text-align: center;
+      padding: 4px 10px;
+      cursor: pointer;
+      border-radius: 3px;
+      white-space: nowrap;
+      box-sizing: border-box;
+      background: linear-gradient(to bottom,#1d7fe2,#0865c2);
+      border: 1px solid #0D6EB8;
+      box-shadow: 0 1px 0 rgba(255,255,255,.2) inset, 0 1px 0 rgba(0,0,0,.2);
     }
   }
 </style>

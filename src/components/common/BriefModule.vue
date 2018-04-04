@@ -12,10 +12,18 @@
         <div class="userInfo">
           <p>斯丢匹德，</p><span>梧桐垃圾灰尘和各式各样的杂货店</span>
         </div>
-        <div class="answer">
+        <div class="answer" v-if="!isShowAll" @click="isShowAll = true">
           我就是这样一类人 在饭店吃饭，和服务员说话特别客气，也从不大声吆喝任何人。在路上只要遇到外地人问路，不管我是否在忙，都会停下来给对方指路。同事在工作中遇到事情需要我帮忙，我就会毫不犹豫过去。单位排轮休表，其他同事要和我串休，没有特殊情况我…
           <a> 显示全部</a>
         </div>
+        <div v-else>
+          <span class="answer-agreement"><a>16K 人赞同</a></span>
+          <quill-editor class="quill"
+                        v-model="answerTextTest"
+                        :options="editorOption">
+          </quill-editor>
+        </div>
+
         <div class="foot">
           <i class="iconfont icon-pluslarge"><a> 关注问题 </a>&ensp;</i>
           <i class="iconfont icon-speechbubble" v-if="!isShowComment" @click="isShowComment = true">
@@ -27,7 +35,8 @@
           <i class="iconfont icon-shuqianbookmark29"><a> 收藏 </a></i>
           <i class="iconfont icon-point"><a> 没有帮助 </a></i>
           <i class="iconfont icon-point"><a> 举报 </a></i>
-          <i class="iconfont icon-point"><a> 作者保留权利</a></i>
+          <i class="iconfont icon-point"><a> 作者保留权利</a>&ensp;</i>
+          <i class="iconfont icon-zelvgongyongshouqi1" v-if="isShowAll" @click="isShowAll = false"><a> 收起</a></i>
         </div>
         <div class="comment" v-if="isShowComment">
           <div class="triangle"></div>
@@ -55,7 +64,13 @@
                           :current-page='1'></paging>
           </div>
           <div class="comment-edit">
-            <input type="text" placeholder="写下你的评论...">
+            <!--<input type="text" placeholder="写下你的评论...">-->
+            <div class="comment-editor">
+              <quill-editor class="quill"
+                            v-model="commentText"
+                            :options="editorOption">
+              </quill-editor>
+            </div>
           </div>
           <div class="comment-btn">
             <span>取消</span> &ensp;
@@ -70,19 +85,43 @@
 <script>
   import Paging from './Paging'
 
+  let answerTextTest = '';
+  for (let i = 0; i < 20; i++) {
+    answerTextTest += `<div>我是第 ${i} 自然段</div>`;
+  }
+
   export default {
     data() {
       return {
         isShowComment: false,
+        commentText: '',
+        answerTextTest: answerTextTest,
+        isShowAll: false,
+        editorOption: {
+          theme: 'bubble',
+          placeholder: "写下你的评论...",
+          modules: {
+            toolbar: [
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'font': [] }],
+              [{ 'align': [] }],
+              ['link', 'image'],
+              ['clean']
+            ]
+          }
+        }
       }
     },
     components: {Paging}
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   .brief-wrapper {
-    max-width: 660px;
+    max-width: 700px;
     margin: 10px;
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
@@ -97,7 +136,7 @@
       color: #104E8B;
     }
     .up-count {
-      width: 150px;
+      width: 60px;
       text-align: center;
     }
     .up-count span {
@@ -107,8 +146,12 @@
       padding: 4px;
       border-radius: 2px;
     }
+    .detail {
+      flex: 1;
+      position: relative;
+    }
     .userInfo {
-      margin-bottom: 10px;
+      margin-bottom: 16px;
       font-size: 14px;
     }
     .userInfo p {
@@ -119,9 +162,22 @@
     .userInfo span {
       color: #999;
     }
+    .answer-agreement {
+      font-size: 11px;
+      color: #999;
+      position: absolute;
+      top: 23px;
+      left: 0;
+      cursor: pointer;
+
+      a:hover {
+        text-decoration: underline;
+        color: #666;
+      }
+    }
     .answer {
       font-size: 14px;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
       cursor: pointer;
     }
     .answer a {
@@ -204,7 +260,6 @@
       border-bottom: 2px solid #eee;
     }
     .comment-edit {
-      height: 40px;
       text-align: center;
     }
     .comment-edit input {
@@ -218,10 +273,17 @@
       box-sizing: border-box;
       padding: 8px 16px;
     }
+    .comment-editor {
+      width: 90%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      min-height: 34px;
+      margin: 12px auto;
+    }
     .comment-btn {
       text-align: right;
       box-sizing: border-box;
-      padding-top: 6px;
     }
     .comment-btn span {
       color: #999;

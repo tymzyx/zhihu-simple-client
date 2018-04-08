@@ -35,8 +35,8 @@
           <i class="iconfont icon-shuqianbookmark29"><a> 收藏 </a></i>
           <i class="iconfont icon-point"><a> 没有帮助 </a></i>
           <i class="iconfont icon-point"><a> 举报 </a></i>
-          <i class="iconfont icon-point"><a> 作者保留权利</a>&ensp;</i>
-          <i class="iconfont icon-zelvgongyongshouqi1" v-if="isShowAll" @click="isShowAll = false"><a> 收起</a></i>
+          <i class="iconfont icon-point"><a> 作者保留权利 </a>&ensp;</i>
+          <i class="iconfont icon-zelvgongyongshouqi1" v-if="isShowAll" @click="isShowAll = false"><a> 收起&ensp;</a></i>
         </div>
         <div class="comment" v-if="isShowComment">
           <div class="triangle"></div>
@@ -122,7 +122,7 @@
 <style lang="less">
   .brief-wrapper {
     max-width: 700px;
-    margin: 10px;
+    /*margin: 10px;*/
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
   }
@@ -134,6 +134,11 @@
       margin: 10px;
       font-size: 15px;
       color: #104E8B;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .title h4:hover {
+      text-decoration: underline;
     }
     .up-count {
       width: 60px;

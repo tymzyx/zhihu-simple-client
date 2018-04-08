@@ -2,7 +2,7 @@
   <div class="item-card-wrapper">
     <div class="item-card-head">
       <p>{{headName[0]}}</p>
-      <span>{{headName[0]}}</span>
+      <span>{{headName[1]}}</span>
     </div>
     <div>
       <single-item :avatarUrl="avatarUrl" v-for="i,index in 4" :key="index"></single-item>

@@ -25,17 +25,17 @@
         </div>
 
         <div class="foot">
-          <i class="iconfont icon-pluslarge"><a> 关注问题 </a>&ensp;</i>
+          <i class="iconfont icon-pluslarge"><a> 关注问题</a>&ensp;</i>
           <i class="iconfont icon-speechbubble" v-if="!isShowComment" @click="isShowComment = true">
-            <a> 1132 条评论 </a>&ensp;
+            <a> 1132 条评论</a>&ensp;
           </i>
           <i class="iconfont icon-speechbubble" v-else @click="isShowComment = false"><a> 收起评论 </a>&ensp;</i>
-          <i class="iconfont icon-aixin"><a> 感谢 </a>&ensp;</i>
-          <i class="iconfont icon-fenxiang"><a> 分享 </a>&ensp;</i>
-          <i class="iconfont icon-shuqianbookmark29"><a> 收藏 </a></i>
-          <i class="iconfont icon-point"><a> 没有帮助 </a></i>
-          <i class="iconfont icon-point"><a> 举报 </a></i>
-          <i class="iconfont icon-point"><a> 作者保留权利 </a>&ensp;</i>
+          <i class="iconfont icon-aixin"><a> 感谢</a>&ensp;</i>
+          <i class="iconfont icon-fenxiang"><a> 分享</a>&ensp;</i>
+          <i class="iconfont icon-shuqianbookmark29"><a> 收藏</a></i>
+          <i class="iconfont icon-point"><a> 没有帮助</a></i>
+          <i class="iconfont icon-point"><a> 举报</a></i>
+          <i class="iconfont icon-point"><a> 作者保留权利</a>&ensp;</i>
           <i class="iconfont icon-zelvgongyongshouqi1" v-if="isShowAll" @click="isShowAll = false"><a> 收起&ensp;</a></i>
         </div>
         <div class="comment" v-if="isShowComment">
@@ -121,7 +121,7 @@
 
 <style lang="less">
   .brief-wrapper {
-    max-width: 700px;
+    max-width: 670px;
     /*margin: 10px;*/
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;

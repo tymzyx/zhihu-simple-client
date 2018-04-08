@@ -94,7 +94,7 @@
       height: 45px;
       /*background: yellow;*/
       display: flex;
-      width: 1000px;
+      width: 1060px;
 
       .top-search {
         width: 40%;

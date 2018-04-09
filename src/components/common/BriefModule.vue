@@ -20,6 +20,7 @@
           <span class="answer-agreement"><a>16K 人赞同</a></span>
           <quill-editor class="quill"
                         v-model="answerTextTest"
+                        :disabled = "true"
                         :options="editorOption">
           </quill-editor>
         </div>

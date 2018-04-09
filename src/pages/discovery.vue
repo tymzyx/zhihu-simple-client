@@ -66,15 +66,10 @@
 <style lang="less">
   .body-wrapper {
     position: relative;
-    left: 50%;
     top: 45px;
     width: 1080px;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transform: translateX(-50%);
-    display: flex;
+    margin: auto;
+    display: flex;  // transform可能导致position:fixed无效
 
     .discovery-left {
       width: 670px;

@@ -3,6 +3,7 @@
     <top-bar></top-bar>
     <div class="body-wrapper">
       <div class="discovery-left">
+        <navbar :isSingle="true"></navbar>
         <brief-module></brief-module>
       </div>
       <div class="discovery-right">
@@ -18,6 +19,7 @@
   import TopBar from '../components/common/TopBar'
   import BriefModule from '../components/common/BriefModule'
   import ItemCard from '../components/common/ItemCard'
+  import Navbar from '../components/common/tab/Navbar'
 
   let imgUrl0 = require('../assets/img/yz0.jpg');
   let imgUrl1 = require('../assets/img/yz1.jpg');
@@ -54,7 +56,7 @@
   ];
 
   export default {
-    components: {TopBar, BriefModule, ItemCard},
+    components: {TopBar, BriefModule, ItemCard, Navbar},
     data() {
       return {
         testInfo: testInfo,
@@ -73,6 +75,7 @@
 
     .discovery-left {
       width: 670px;
+      margin-top: 10px;
     }
     .discovery-right {
       flex: 1;

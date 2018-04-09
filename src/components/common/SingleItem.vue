@@ -129,6 +129,7 @@
       font-size: 14px;
       color: #259;
       cursor: pointer;
+      display: inline-block;
     }
     .item-info p:hover {
       text-decoration: underline;

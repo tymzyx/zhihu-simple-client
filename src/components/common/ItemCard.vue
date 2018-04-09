@@ -1,11 +1,12 @@
 <template>
   <div class="item-card-wrapper">
     <div class="item-card-head">
-      <p>{{headName[0]}}</p>
-      <span>{{headName[1]}}</span>
+      <p>{{itemInfo.head[0]}}</p>
+      <span>{{itemInfo.head[1]}}</span>
     </div>
     <div>
-      <single-item :avatarUrl="avatarUrl" v-for="i,index in 4" :key="index"></single-item>
+      <single-item :avatarUrl="item.imgUrl" v-for="item,index in itemInfo.items" :key="index" :itemInfo="item.name">
+      </single-item>
     </div>
   </div>
 </template>
@@ -13,11 +14,11 @@
 <script>
   import SingleItem from './SingleItem'
 
-  let testJpg = require('../../assets/img/test.jpg');
+  let testJpg = require('../../assets/img/yz0.jpg');
 
   export default {
     components: {SingleItem},
-    props: ['headName'],
+    props: ['itemInfo'],
     data() {
       return {
         avatarUrl: `url(${testJpg})`

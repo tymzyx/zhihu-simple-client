@@ -4,12 +4,43 @@
     <div class="body-wrapper">
       <div class="discovery-left">
         <navbar :isSingle="true"></navbar>
-        <brief-module></brief-module>
+        <tab-container v-model="topSelected">
+          <tab-container-item itemId="0">
+            <article-item v-for="item,index in articles" :title="item" :isDetail="index == 0"
+                          :isDivide="index != 4"></article-item>
+          </tab-container-item>
+        </tab-container>
+
+        <navbar :isSingle="false" v-model="hotSelected">
+          <tab-item itemId="0">今日最热</tab-item>
+          <tab-item itemId="1">本月最热</tab-item>
+        </navbar>
+        <tab-container v-model="hotSelected">
+          <tab-container-item itemId="0">
+            <brief-module v-for="i in 10"></brief-module>
+          </tab-container-item>
+          <tab-container-item itemId="1">
+            <span>test test test</span>
+          </tab-container-item>
+        </tab-container>
       </div>
       <div class="discovery-right">
         <item-card :itemInfo="testInfo[0]"></item-card>
         <item-card :itemInfo="testInfo[1]"></item-card>
         <item-card :itemInfo="testInfo[2]"></item-card>
+        <div class="discovery-right-foot">
+          <span>
+            刘看山<i class="iconfont icon-point"></i>
+            知乎指南<i class="iconfont icon-point"></i>
+            建议反馈<i class="iconfont icon-point"></i>
+            移动应用 <br/><br/>
+            加入知乎<i class="iconfont icon-point"></i>
+            知乎协议<i class="iconfont icon-point"></i>
+            举报投诉<i class="iconfont icon-point"></i>
+            联系我们 <br/><br/>
+            © 2018 知乎
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -20,6 +51,10 @@
   import BriefModule from '../components/common/BriefModule'
   import ItemCard from '../components/common/ItemCard'
   import Navbar from '../components/common/tab/Navbar'
+  import TabContainer from '../components/common/tab/TabContainer'
+  import TabContainerItem from '../components/common/tab/TabContainerItem'
+  import ArticleItem from '../components/common/ArticleItem'
+  import TabItem from '../components/common/tab/TabItem'
 
   let imgUrl0 = require('../assets/img/yz0.jpg');
   let imgUrl1 = require('../assets/img/yz1.jpg');
@@ -55,11 +90,22 @@
     },
   ];
 
+  let articles = [
+    {title: '【记录LPL五周年】阿布——五年沧桑后的匆匆回眸', tag: ''},
+    {title: '51信用卡递交上市申请 信用卡市场的另类赢家', tag: '文章'},
+    {title: '中国造出世界最大3D砂型打印机，猜一猜它究竟能干啥？', tag: '了不起的中国制造'},
+    {title: '复活节：家长们请当心这些“亲子陋习”和“糖果陷阱”', tag: '爱丽丝与奇妙豆：北美幼儿教育'},
+    {title: '如何看待《奇葩大会》第二季第2集中刘可乐双相情感障碍的病症？', tag: '问答'},
+  ];
+
   export default {
-    components: {TopBar, BriefModule, ItemCard, Navbar},
+    components: {TopBar, BriefModule, ItemCard, Navbar, TabContainer, TabContainerItem, ArticleItem, TabItem},
     data() {
       return {
         testInfo: testInfo,
+        topSelected: "0",
+        articles: articles,
+        hotSelected: "0"
       }
     }
   }
@@ -81,6 +127,12 @@
       flex: 1;
       margin-top: 10px;
       /*background: dodgerblue;*/
+    }
+    .discovery-right-foot {
+      margin: 16px 16px 16px 40px;
+      width: 280px;
+      font-size: 13px;
+      color: #aaa;
     }
   }
 </style>

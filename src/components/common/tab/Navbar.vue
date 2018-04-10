@@ -10,14 +10,14 @@
       </div>
     </div>
     <div class="multi-navbar" v-else>
-
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    props: ['isSingle']
+    props: ['isSingle', 'value']
   }
 </script>
 
@@ -25,11 +25,11 @@
   .common-navbar-wrapper {
     border-bottom: 1px solid #ccc;
     margin-top: 14px;
-    padding-bottom: 18px;
 
     .single-navbar {
       display: flex;
       justify-content: space-between;
+      padding-bottom: 14px;
     }
     .single-navbar p {
       margin: 0;
@@ -40,6 +40,10 @@
     .single-navbar span, .single-navbar i {
       font-size: 13px;
       color: #666;
+    }
+
+    .multi-navbar {
+      display: flex;
     }
   }
 </style>

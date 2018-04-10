@@ -123,7 +123,7 @@
 <style lang="less">
   .brief-wrapper {
     max-width: 670px;
-    /*margin: 10px;*/
+    margin-top: 12px;
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
   }
@@ -132,8 +132,8 @@
       display: flex;
     }
     .title h4{
-      margin: 10px;
-      font-size: 15px;
+      margin: 10px 0;
+      font-size: 14px;
       color: #104E8B;
       cursor: pointer;
       display: inline-block;
@@ -142,8 +142,8 @@
       text-decoration: underline;
     }
     .up-count {
-      width: 60px;
-      text-align: center;
+      width: 50px;
+      text-align: left;
     }
     .up-count span {
       color: dodgerblue;
@@ -158,7 +158,7 @@
     }
     .userInfo {
       margin-bottom: 16px;
-      font-size: 14px;
+      font-size: 13px;
     }
     .userInfo p {
       display: inline-block;
@@ -182,7 +182,7 @@
       }
     }
     .answer {
-      font-size: 14px;
+      font-size: 13px;
       margin-bottom: 16px;
       cursor: pointer;
     }

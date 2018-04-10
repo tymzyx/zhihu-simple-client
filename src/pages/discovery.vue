@@ -17,7 +17,7 @@
         </navbar>
         <tab-container v-model="hotSelected">
           <tab-container-item itemId="0">
-            <brief-module v-for="i in 10"></brief-module>
+            <brief-module v-for="i in answerNum"></brief-module>
           </tab-container-item>
           <tab-container-item itemId="1">
             <span>test test test</span>
@@ -47,6 +47,8 @@
 </template>
 
 <script>
+  import $ from 'jquery'
+
   import TopBar from '../components/common/TopBar'
   import BriefModule from '../components/common/BriefModule'
   import ItemCard from '../components/common/ItemCard'
@@ -105,7 +107,27 @@
         testInfo: testInfo,
         topSelected: "0",
         articles: articles,
-        hotSelected: "0"
+        hotSelected: "0",
+        answerNum: 10,
+      }
+    },
+    mounted() {
+      this.initEvents();
+    },
+    methods: {
+      initEvents() {
+        let _this = this;
+
+        let bottomRange = 50;  // 距下边界长度/单位px
+        $(window).scroll(function() {
+          // console.log('i am scroll~~~~~');
+          let scrollPos = $(window).scrollTop();    // 滚动条距顶部距离(页面超出窗口的高度)
+          let totalHeight = parseFloat($(window).height()) + parseFloat(scrollPos);
+
+          if (($(document).height()-bottomRange) <= totalHeight) {
+            _this.answerNum += 10;
+          }
+        });
       }
     }
   }
@@ -122,6 +144,7 @@
     .discovery-left {
       width: 670px;
       margin-top: 10px;
+      margin-bottom: 300px;
     }
     .discovery-right {
       flex: 1;

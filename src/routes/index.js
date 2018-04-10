@@ -4,6 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router);
 
 import discovery from '../pages/discovery'
+import testPage from '../pages/test'
 import test from '../components/common/TestEditor'
 
 let route = new Router({
@@ -17,7 +18,7 @@ let route = new Router({
     {
       path: '/test',
       name: 'test',
-      component: test
+      component: testPage
     }
   ]
 });

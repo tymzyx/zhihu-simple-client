@@ -2,24 +2,28 @@
 <template>
   <div class="brief-wrapper">
     <div class="title">
-      <h4>这是一个问题？</h4>
+      <h4><a target="_blank" :href="info.question_url">{{info.question_name}}</a></h4>
     </div>
     <div class="content">
       <div class="up-count">
-        <span>16K</span>
+        <span>{{info.vote_up}}</span>
       </div>
       <div class="detail">
         <div class="userInfo">
-          <p>斯丢匹德，</p><span>梧桐垃圾灰尘和各式各样的杂货店</span>
+          <p>{{info.user_name + (info.user_badge ? '，' : '')}}</p><p>{{info.user_badge + (info.user_tag ? '，' : '')}}</p>
+          <span>{{info.user_tag}}</span>
         </div>
         <div class="answer" v-if="!isShowAll" @click="isShowAll = true">
-          我就是这样一类人 在饭店吃饭，和服务员说话特别客气，也从不大声吆喝任何人。在路上只要遇到外地人问路，不管我是否在忙，都会停下来给对方指路。同事在工作中遇到事情需要我帮忙，我就会毫不犹豫过去。单位排轮休表，其他同事要和我串休，没有特殊情况我…
-          <a> 显示全部</a>
+          <img :src="info.answer_brief_img">
+          <div>
+            {{info.answer_brief_text}}
+            <a> 显示全部</a>
+          </div>
         </div>
         <div v-else>
-          <span class="answer-agreement"><a>16K 人赞同</a></span>
+          <span class="answer-agreement"><a>{{info.vote_up}} 人赞同</a></span>
           <quill-editor class="quill"
-                        v-model="answerTextTest"
+                        v-model="info.answer_detail"
                         :disabled = "true"
                         :options="editorOption">
           </quill-editor>
@@ -92,6 +96,7 @@
   }
 
   export default {
+    props: ['info'],
     data() {
       return {
         isShowComment: false,
@@ -141,20 +146,25 @@
     .title h4:hover {
       text-decoration: underline;
     }
+    .title a {
+      text-decoration: none;
+      color: #104E8B;
+    }
     .up-count {
       width: 50px;
       text-align: left;
     }
     .up-count span {
-      color: dodgerblue;
-      font-size: 14px;
-      background: rgba(176, 226, 255, 0.5);
+      color: #698ebf;
+      font-size: 13px;
+      background: rgba(176, 226, 255, 0.2);
       padding: 4px;
       border-radius: 2px;
     }
     .detail {
       flex: 1;
       position: relative;
+      padding-top: 4px;
     }
     .userInfo {
       margin-bottom: 16px;
@@ -185,6 +195,14 @@
       font-size: 13px;
       margin-bottom: 16px;
       cursor: pointer;
+      display: flex;
+    }
+    .answer img {
+      margin-right: 10px;
+    }
+    .answer div {
+      flex: 1;
+      line-height: 1.7;
     }
     .answer a {
       color: #104E8B;

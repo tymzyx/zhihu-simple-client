@@ -17,10 +17,10 @@
         </navbar>
         <tab-container v-model="hotSelected">
           <tab-container-item itemId="0">
-            <brief-module v-for="i in answerNum"></brief-module>
+            <brief-module v-for="item in dayHots" :info="item"></brief-module>
           </tab-container-item>
           <tab-container-item itemId="1">
-            <span>test test test</span>
+            <brief-module v-for="item in monthHots" :info="item"></brief-module>
           </tab-container-item>
         </tab-container>
       </div>
@@ -109,12 +109,23 @@
         articles: articles,
         hotSelected: "0",
         answerNum: 10,
+        dayHots: [],
+        monthHots: [],
+        dayNum: 0,
+        monthNum: 0,
       }
+    },
+    created() {
+      this.initData();
     },
     mounted() {
       this.initEvents();
     },
     methods: {
+      initData() {
+        this.updateHots('month');
+        this.updateHots('day');
+      },
       initEvents() {
         let _this = this;
 
@@ -127,6 +138,28 @@
           if (($(document).height()-bottomRange) <= totalHeight) {
             _this.answerNum += 10;
           }
+        });
+      },
+      updateHots(hotType) {
+        let _this = this;
+        let offset = hotType === 'day' ? this.dayNum : this.monthNum;
+        let url = 'http://localhost:2233/api/v1/hots?offset=' + offset + '&type=' + hotType;
+        this.$http.get(url).then(function (response) {
+          console.log(response);
+          let result =response.data;
+          if (result.code === '0') {
+            console.log(result.message);
+          } else {
+            result.forEach(val => {
+              if (hotType === 'day') {
+                _this.dayHots.push(val);
+              } else {
+                _this.monthHots.push(val);
+              }
+            })
+          }
+        }).catch(function (error) {
+          console.log('error: ', error);
         });
       }
     }

@@ -37,13 +37,16 @@ def get_hot(hot_type):
     hots = []
     for single_div in soup.find_all('div', class_='explore-feed feed-item'):
         hot_id = single_div['data-offset']
-        question_name = single_div.find('h2').find('a').text   # 问题名称
-        question_url = 'www.zhihu.com' + single_div.find('link')['href']   # 问题连接
+        question_name = single_div.find('h2').find('a').text.strip().replace('\n', '')   # 问题名称
+        question_url = 'http://www.zhihu.com' + single_div.find('link')['href']   # 问题连接
         vote_bar = single_div.find('div', class_='zm-votebar')
         vote_up = vote_bar.find('button', class_='up').find('span', class_='count').get_text()   # 赞同数
         answer_head = single_div.find('div', class_='answer-head')
         user_name = answer_head.find('a', class_='author-link').text   # 用户名
-        user_tag = answer_head.find('span', class_='bio')['title']   # 用户个性签名
+        user_tag = answer_head.find('span', class_='bio')['title'] \
+            if answer_head.find('span', class_='bio') else ''   # 用户个性签名
+        user_badge = answer_head.find('span', class_='badge-summary').get_text() \
+            if answer_head.find('span', class_='badge-summary') else ''  # 用户认证信息
         answer_content = single_div.find('div', class_='zm-item-rich-text expandable js-collapse-body')
         answer_detail = answer_content.find('textarea', class_='content').get_text()   # 答案内容
         answer_brief = answer_content.find('div', class_='zh-summary summary clearfix')
@@ -58,17 +61,16 @@ def get_hot(hot_type):
           'vote_up': vote_up,
           'user_name': user_name,
           'user_tag': user_tag,
+          'user_badge': user_badge,
           'answer_detail': answer_detail,
           'answer_brief_img': brief_img,
           'answer_brief_text': brief_text,
           'edit_time': edit_time
         }
         hots.append(single_hot)
-
-        db = connect_db()
-        collection = db.hots
-        collection.insert_many(hots)
-        break
+    db = connect_db()
+    collection = db.hots
+    collection.insert_many(hots)
 
 
 def connect_db():

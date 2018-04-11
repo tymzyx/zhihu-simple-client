@@ -88,7 +88,7 @@
 
   let answerTextTest = '';
   for (let i = 0; i < 20; i++) {
-    answerTextTest += `<div>我是第 ${i} 自然段</div>`;
+    answerTextTest += `<div>我是第 ${i} &lt;div&gt; <br/>自然段</div>`;
   }
 
   export default {

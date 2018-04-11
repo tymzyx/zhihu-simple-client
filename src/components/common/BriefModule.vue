@@ -20,7 +20,7 @@
             <a> 显示全部</a>
           </div>
         </div>
-        <div v-else>
+        <div v-else class="answer-detail">
           <span class="answer-agreement"><a>{{info.vote_up}} 人赞同</a></span>
           <quill-editor class="quill"
                         v-model="info.answer_detail"
@@ -212,6 +212,9 @@
     }
     .answer a:hover {
       background: rgba(176, 226, 255, 0.2);
+    }
+    .answer-detail p {
+      line-height: 1.7;
     }
     .foot {
       font-size: 13px;

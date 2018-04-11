@@ -130,13 +130,25 @@
         let _this = this;
 
         let bottomRange = 50;  // 距下边界长度/单位px
+        let maxNum = 20;
         $(window).scroll(function() {
           // console.log('i am scroll~~~~~');
           let scrollPos = $(window).scrollTop();    // 滚动条距顶部距离(页面超出窗口的高度)
           let totalHeight = parseFloat($(window).height()) + parseFloat(scrollPos);
 
           if (($(document).height()-bottomRange) <= totalHeight) {
-            _this.answerNum += 10;
+            // _this.answerNum += 10;
+            if (_this.hotSelected === '0') {
+              if (_this.dayNum < maxNum - 5) {
+                _this.dayNum += 5;
+                _this.updateHots('day');
+              }
+            } else {
+              if (_this.dayNum < maxNum - 5) {
+                _this.monthNum += 5;
+                _this.updateHots('month');
+              }
+            }
           }
         });
       },

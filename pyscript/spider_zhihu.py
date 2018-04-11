@@ -50,8 +50,8 @@ def get_hot(hot_type):
         answer_content = single_div.find('div', class_='zm-item-rich-text expandable js-collapse-body')
         answer_detail = answer_content.find('textarea', class_='content').get_text()   # 答案内容
         answer_brief = answer_content.find('div', class_='zh-summary summary clearfix')
-        brief_text = answer_brief.get_text()
-        brief_img = answer_brief.find('img')['src'] if answer_brief.find('img') else ''
+        brief_text = answer_brief.get_text()[:-5]   # 答案摘要
+        brief_img = answer_brief.find('img')['src'] if answer_brief.find('img') else ''   # 答案图片摘要
         edit_time = answer_content.find('p', class_='visible-expanded').find('a').get_text()   # 答案编辑时间
         single_hot = {
           'hot_type': hot_type,
@@ -80,6 +80,6 @@ def connect_db():
 
 
 if __name__ == '__main__':
-    get_hot('month')
+    get_hot('day')
 
 

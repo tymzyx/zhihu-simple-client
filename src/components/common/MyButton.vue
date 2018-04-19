@@ -1,11 +1,30 @@
 <template>
-  <button type="button" class="my-button">
+  <button type="button" class="my-button" :class="{default: isDefault === 1}"
+          :style="{
+              background: bg,
+              border: '1px solid' + border,
+              height: height
+          }">
     <slot></slot>
   </button>
 </template>
 
 <script>
   export default {
+    props: {
+      bg: {
+        default: 'linear-gradient(to bottom,#0e7bef,#0d73da)'
+      },
+      border: {
+        default: '#045bb2'
+      },
+      isDefault: {
+        default: 1,
+      },
+      height: {
+        default: '32px'
+      }
+    }
   }
 </script>
 
@@ -28,7 +47,7 @@
     outline: 0;
     transition: all .2s ease-in-out;
   }
-  .my-button:active {
-    background: linear-gradient(to bottom,#0d73da,#0e7bef);
+  .default:active {
+    background: linear-gradient(to bottom,#0d73da,#0e7bef) !important;
   }
 </style>

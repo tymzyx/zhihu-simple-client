@@ -180,13 +180,12 @@
       }
     }
 
-  }
-
-  .el-input {
-    width: 300px;
-  }
-  .el-input__inner {
-    height: 32px;
-    line-height: 32px;
+    .el-input {
+      width: 300px;
+    }
+    .el-input__inner {
+      height: 32px;
+      line-height: 32px;
+    }
   }
 </style>

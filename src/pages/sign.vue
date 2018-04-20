@@ -9,38 +9,63 @@
         </div>
         <div class="form">
           <div class="form-item">
-            <el-input placeholder="手机号" class="input-with-select">
+            <el-input placeholder="手机号" class="input-with-select" v-if="isSignup">
               <el-select slot="prepend" v-model="region">
                 <el-option label="中国 +86" value="1"></el-option>
                 <el-option label="美国 +1" value="2"></el-option>
                 <el-option label="日本 +81" value="3"></el-option>
-                <el-option label="中国香港 +852" value="4"></el-option>
+                <el-option v-for="i in 10" label="中国香港 +852" value="4"></el-option>
               </el-select>
             </el-input>
-          </div>
-          <div class="form-item">
-            <el-input placeholder="输入 6 位短信验证码" v-model="verifyNum" class="input-with-select">
-              <el-button slot="append">
-                <a>获取短信验证码</a>
-              </el-button>
+            <el-input v-else placeholder="手机号或邮箱">
             </el-input>
-            <div class="switch-verify">
-              <span>接收语音验证码</span>
-            </div>
           </div>
           <div class="form-item">
-            <my-button>
+            <section v-if="isSignup">
+              <el-input placeholder="输入 6 位短信验证码" v-model="verifyNum" class="input-with-select">
+                <el-button slot="append">
+                  <a>获取短信验证码</a>
+                </el-button>
+              </el-input>
+              <div class="switch-type">
+                <a></a>
+                <span :style="{position: 'relative', right: '23px'}">接收语音验证码</span>
+              </div>
+            </section>
+            <section v-else>
+              <el-input placeholder="密码" v-model="verifyNum" class="input-with-select">
+                <el-button slot="append">
+                  <i class="iconfont icon-biyan"></i>
+                </el-button>
+              </el-input>
+              <div class="switch-type">
+                <a>手机验证码登录</a>
+                <span>忘记密码？</span>
+              </div>
+            </section>
+          </div>
+          <div class="form-item">
+            <my-button height="36px" v-if="isSignup">
               <span class="affirm-btn-text">注册</span>
             </my-button>
+            <my-button v-else height="36px">
+              <span class="affirm-btn-text">登录</span>
+            </my-button>
           </div>
-          <div class="form-item form-tips">
+          <div class="form-item form-tips" v-if="isSignup">
             <span>注册即代表你同意《知乎协议》</span>
             <a>注册机构号</a>
+          </div>
+          <div class="form-item login-type" v-else>
+            <span>二维码登录</span>
+            <span>海外手机登录</span>
+            <span>社交账号登录登录</span>
           </div>
         </div>
       </div>
       <div class="switch-wrapper">
-        <p>已有账号？<a>登录</a></p>
+        <p v-if="isSignup">已有账号？<a @click="isSignup=!isSignup">登录</a></p>
+        <p v-else>没有账号？<a @click="isSignup=!isSignup">注册</a></p>
       </div>
       <div class="down-btn-wrapper">
         <my-button bg="#8590a6" border="#8590a6" isDefault="0" height="40px">
@@ -72,6 +97,7 @@
     components: {MyButton},
     data() {
       return {
+        isSignup: true,
         region: '1',
         verifyNum: '',
       }
@@ -90,7 +116,7 @@
     .sign-main {
       width: 460px;
       margin: auto;
-      padding-top: 10%;
+      padding-top: 8%;
 
       .sign-info-wrapper {
         width: 100%;
@@ -124,16 +150,26 @@
             cursor: pointer;
           }
         }
-        .switch-verify {
-          position: relative;
-          left: 113px;
-          top: 10px;
+        .login-type {
+          display: flex;
+          justify-content: center;
           font-size: 14px;
-          color: #8590a6;
-          margin-bottom: 36px;
+
+          span {
+            color: #8590a6;
+            margin: 0 8px;
+            cursor: pointer;
+          }
+        }
+        .switch-type {
+          display: flex;
+          justify-content: space-between;
+          font-size: 14px;
+          margin: 10px 0 30px;
 
           span {
             cursor: pointer;
+            color: #8590a6;
           }
         }
         .affirm-btn-text {
@@ -194,9 +230,9 @@
       fill: #0084ff;
     }
 
-  }
+    .el-select .el-input {
+      width: 150px;
+    }
 
-  .el-select .el-input {
-    width: 150px;
   }
 </style>

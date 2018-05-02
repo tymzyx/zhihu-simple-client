@@ -66,7 +66,8 @@
           </div>
           <div class="comment-paging">
             <paging :total='100' :display="10"
-                          :current-page='1'></paging>
+                          :current-page='1'>
+            </paging>
           </div>
           <div class="comment-edit">
             <!--<input type="text" placeholder="写下你的评论...">-->

@@ -24,8 +24,8 @@
       <div class="down">
         <i class="iconfont icon-down"></i>
       </div>
-      <div class="other">
-        <i class="iconfont icon-pinglun">&nbsp;<span>94 条评论</span></i>
+      <div class="other" @click="isShowComment = !isShowComment">
+        <i class="iconfont icon-pinglun">&nbsp;<span>{{isShowComment ? '收起评论' : '94 条评论'}}</span></i>
       </div>
       <div v-for="item in foots" class="other">
         <i :class="item.icon">&nbsp;<span>{{item.text}}</span></i>
@@ -46,14 +46,32 @@
         <div class="more-util" v-if="isShowMore"></div>
       </div>
     </div>
-    <div class="comment-wrapper">
+    <div class="comment-wrapper" v-if="isShowComment">
       <div class="comment-main-wrapper">
         <div class="comment-head">
           <p>521 条评论</p>
           <i class="iconfont icon-web-icon-">&nbsp;<a>切换为时间排序</a></i>
         </div>
-        <comment-home>
-        </comment-home>
+        <div v-for="i in 20" class="comment-items">
+          <comment-home :key="i">
+          </comment-home>
+        </div>
+      </div>
+      <div class="comment-paging">
+        <paging :total='100' :display="10"
+                      :current-page='1'>
+        </paging>
+      </div>
+      <div class="comment-edit">
+        <div class="comment-editor">
+          <quill-editor class="quill"
+                        v-model="commentText"
+                        :options="editorOption">
+          </quill-editor>
+        </div>
+        <div class="comment-btn">
+
+        </div>
       </div>
     </div>
   </div>
@@ -61,6 +79,7 @@
 
 <script>
   import CommentHome from './CommentHome'
+  import Paging from './Paging'
 
   let foots = [
     {text: '分享', icon: 'iconfont icon-emizhifeiji'},
@@ -69,11 +88,28 @@
   ];
 
   export default {
-    components: {CommentHome},
+    components: {CommentHome, Paging},
     data() {
       return {
         foots: foots,
         isShowMore: false,
+        isShowComment: false,
+        editorOption: {
+          theme: 'bubble',
+          placeholder: "写下你的评论...",
+          modules: {
+            toolbar: [
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'font': [] }],
+              [{ 'align': [] }],
+              ['link', 'image'],
+              ['clean']
+            ]
+          }
+        }
       }
     }
   }
@@ -217,7 +253,7 @@
       margin: 14px 0;
 
       .comment-main-wrapper {
-        padding: 16px;
+        padding: 16px 16px 0;
       }
       .comment-head {
         display: flex;
@@ -238,6 +274,25 @@
             color: #8590a6;
           }
         }
+      }
+      .comment-items {
+        padding: 2px 0;
+      }
+      .comment-paging {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+      }
+
+      .comment-edit {
+
+      }
+      .comment-editor {
+        width: 90%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        min-height: 34px;
+        margin: 12px auto;
       }
     }
   }

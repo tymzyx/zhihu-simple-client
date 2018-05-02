@@ -33,11 +33,11 @@
             刘看山<i class="iconfont icon-point"></i>
             知乎指南<i class="iconfont icon-point"></i>
             建议反馈<i class="iconfont icon-point"></i>
-            移动应用 <br/><br/>
+            移动应用 <br/>
             加入知乎<i class="iconfont icon-point"></i>
             知乎协议<i class="iconfont icon-point"></i>
             举报投诉<i class="iconfont icon-point"></i>
-            联系我们 <br/><br/>
+            联系我们 <br/>
             © 2018 知乎
           </span>
         </div>
@@ -159,6 +159,7 @@
         this.$http.get(url).then(function (response) {
           console.log(response);
           let result =response.data;
+          // console.log('result: ', result)
           if (result.code === '0') {
             console.log(result.message);
           } else {
@@ -201,6 +202,7 @@
       width: 280px;
       font-size: 13px;
       color: #aaa;
+      line-height: 24px;
     }
   }
 </style>

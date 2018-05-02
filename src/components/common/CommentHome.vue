@@ -13,8 +13,8 @@
       <span>不然爆个照知友帮你鉴定下.....？</span>
     </div>
     <div class="comment-item-footer">
-      <i class="iconfont dianzan"><span>362</span></i>
-      <i v-for="item in foots" :class="item.icon"><span>{{item.text}}</span></i>
+      <i class="iconfont icon-dianzan">&nbsp;<span>362</span></i>
+      <i v-for="item in foots" :class="item.icon">&nbsp;<span>{{item.text}}</span></i>
     </div>
   </div>
 </template>
@@ -41,10 +41,9 @@
   .comment-item-wrapper {
     width: 100%;
     box-sizing: border-box;
-    margin: 12px 0;
 
     .comment-item-head, .comment-item-text, .comment-item-footer {
-      margin: 8px 0;
+      margin: 10px 0;
     }
     .comment-item-head {
       display: flex;
@@ -73,6 +72,12 @@
       i {
         color: #77839c;
         font-size: 14px;
+        margin-right: 20px;
+        cursor: pointer;
+
+        :hover {
+          color: #8590a6;
+        }
       }
     }
   }

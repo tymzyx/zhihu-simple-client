@@ -4,9 +4,9 @@
     <div class="home-left">
       <div class="home-left-top">
         <div class="home-left-top-left">
-          <span v-for="i in 4"><i class="iconfont icon-wenhao"></i>提问</span>
+          <span v-for="item in leftMenu"><i :class="item.icon"></i>{{item.text}}</span>
         </div>
-        <div>
+        <div class="home-left-top-right">
           <span>草稿</span>
         </div>
       </div>
@@ -28,8 +28,20 @@
   import TopBar from '../components/common/TopBar'
   import BriefModule from '../components/common/BriefModuleHome'
 
+  let leftMenu = [
+    {text: '提问', icon: 'iconfont icon-wenhao'},
+    {text: '回答', icon: 'iconfont icon-wenzhang'},
+    {text: '写文章', icon: 'iconfont icon-write'},
+    {text: '写想法', icon: 'iconfont icon-infinite'}
+  ];
+
   export default {
-    components: {TopBar, BriefModule}
+    components: {TopBar, BriefModule},
+    data() {
+      return {
+        leftMenu: leftMenu
+      }
+    }
   }
 </script>
 
@@ -66,8 +78,21 @@
           }
           i {
             color: #aaa;
-            font-size: 14px;
+            font-size: 17px;
             margin-right: 6px;
+          }
+        }
+
+        .home-left-top-right {
+          margin-right: 20px;
+          font-size: 15px;
+          cursor: pointer;
+
+          span {
+            color: #8590a6;
+          }
+          span:hover {
+            color: #175199;
           }
         }
       }

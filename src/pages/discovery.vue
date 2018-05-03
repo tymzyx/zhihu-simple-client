@@ -1,13 +1,13 @@
 <template>
   <div>
-    <top-bar></top-bar>
+    <top-bar actived="2" />
     <div class="body-wrapper">
       <div class="discovery-left">
-        <navbar :isSingle="true"></navbar>
+        <navbar :isSingle="true" :header-left="'编辑推荐'" :header-right="'更多推荐 >>'"/>
         <tab-container v-model="topSelected">
           <tab-container-item itemId="0">
             <article-item v-for="item,index in articles" :title="item" :isDetail="index == 0"
-                          :isDivide="index != 4"></article-item>
+                          :isDivide="index != 4"/>
           </tab-container-item>
         </tab-container>
 
@@ -17,17 +17,17 @@
         </navbar>
         <tab-container v-model="hotSelected">
           <tab-container-item itemId="0">
-            <brief-module v-for="item in dayHots" :info="item"></brief-module>
+            <brief-module v-for="item in dayHots" :info="item"/>
           </tab-container-item>
           <tab-container-item itemId="1">
-            <brief-module v-for="item in monthHots" :info="item"></brief-module>
+            <brief-module v-for="item in monthHots" :info="item"/>
           </tab-container-item>
         </tab-container>
       </div>
       <div class="discovery-right">
-        <item-card :itemInfo="testInfo[0]"></item-card>
-        <item-card :itemInfo="testInfo[1]"></item-card>
-        <item-card :itemInfo="testInfo[2]"></item-card>
+        <item-card :itemInfo="testInfo[0]"/>
+        <item-card :itemInfo="testInfo[1]"/>
+        <item-card :itemInfo="testInfo[2]"/>
         <div class="discovery-right-foot">
           <span>
             刘看山<i class="iconfont icon-point"></i>

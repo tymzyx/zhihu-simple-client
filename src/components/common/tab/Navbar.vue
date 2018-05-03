@@ -3,10 +3,10 @@
     <div class="single-navbar" v-if="isSingle">
       <div>
         <i class="iconfont icon-wenzhang"></i>
-        <span>编辑推荐</span>
+        <span>{{headerLeft}}</span>
       </div>
       <div>
-        <p>更多推荐 >></p>
+        <p>{{headerRight}}</p>
       </div>
     </div>
     <div class="multi-navbar" v-else>
@@ -17,7 +17,7 @@
 
 <script>
   export default {
-    props: ['isSingle', 'value']
+    props: ['isSingle', 'value', 'headerRight', 'headerLeft']
   }
 </script>
 

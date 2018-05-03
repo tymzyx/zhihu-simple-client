@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="top-navbar">
-        <span v-for="item in navBar" :class="{'top-navbar-active': activeIndex==item.index}">{{item.text}}</span>
+        <span v-for="item in navBar" :class="{'top-navbar-active': actived===item.index}" @click="changePage(item.route)">{{item.text}}</span>
       </div>
       <div class="top-user">
         <div class="top-user-answer">
@@ -35,10 +35,10 @@
   import MyButton from './MyButton'
 
   let navBar = [
-    {text: '首页', index: '0'},
-    {text: '话题', index: '1'},
-    {text: '发现', index: '2'},
-    {text: '消息', index: '3'},
+    {text: '首页', index: '0', route: '/home'},
+    {text: '话题', index: '1', route: '/topic'},
+    {text: '发现', index: '2', route: '/'},
+    {text: '消息', index: '3', route: '/'},
   ];
 
   let dropBar = [
@@ -46,16 +46,17 @@
     {text: '私信', index: '0', icon: 'iconfont icon-xinfeng'},
     {text: '设置', index: '0', icon: 'iconfont icon-set1'},
     {text: '退出', index: '0', icon: 'iconfont icon-hkquit'}
-  ]
+  ];
 
   export default {
     components: {MyButton},
+    props: ['actived'],
     data() {
       return {
         navBar: navBar,
         dropBar: dropBar,
         username: 'to mo',
-        activeIndex: '2',
+        // activeIndex: '2',
         isDropShow: false,
       }
     },
@@ -74,6 +75,10 @@
         userInfo.addEventListener('mouseleave', function() {
           setTimeout(function () {that.isDropShow = false}, 10);
         });
+      },
+
+      changePage(route) {
+        this.$router.push(route);
       }
     }
   }

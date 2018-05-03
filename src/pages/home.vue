@@ -1,6 +1,6 @@
 <template>
   <div class="home-wrapper">
-    <top-bar></top-bar>
+    <top-bar actived="0" />
     <div class="home-left">
       <div class="home-left-top">
         <div class="home-left-top-left">

@@ -8,7 +8,7 @@
           <tab-container v-model="staticSelected">
             <tab-container-item itemId="0">
               <div class="topics">
-                <div v-for="i in 15" @click="activeTopic = i" :class="{'topic-label': true, 'topic-label-active': i === activeTopic}">
+                <div v-for="i in 15" :key="i" @click="activeTopic = i" :class="{'topic-label': true, 'topic-label-active': i === activeTopic}">
                   电影
                 </div>
               </div>
@@ -28,7 +28,7 @@
             </div>
           </div>
           <div>
-            <brief-module v-for="item in dayHots" :info="item"/>
+            <brief-module v-for="(item,index) in dayHots" :key="index" :info="item"/>
           </div>
         </div>
       </div>
@@ -59,7 +59,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>

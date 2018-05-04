@@ -14,7 +14,7 @@
                 <el-option label="中国 +86" value="1"/>
                 <el-option label="美国 +1" value="2"/>
                 <el-option label="日本 +81" value="3"/>
-                <el-option v-for="i in 10" label="中国香港 +852" value="4"/>
+                <el-option v-for="i in 10" :key="i" label="中国香港 +852" value="4"/>
               </el-select>
             </el-input>
             <el-input v-else placeholder="手机号或邮箱">

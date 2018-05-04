@@ -5,7 +5,7 @@
               border: '1px solid' + border,
               height: height
           }">
-    <slot></slot>
+    <slot />
   </button>
 </template>
 

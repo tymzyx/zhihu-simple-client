@@ -5,7 +5,7 @@
         <div class="top-logo"></div>
         <div class="top-input">
           <el-input placeholder="搜索你感兴趣的内容...">
-            <el-button slot="append" icon="el-icon-search"></el-button>
+            <el-button slot="append" icon="el-icon-search"/>
           </el-input>
         </div>
       </div>
@@ -38,7 +38,7 @@
     {text: '首页', index: '0', route: '/home'},
     {text: '话题', index: '1', route: '/topic'},
     {text: '发现', index: '2', route: '/'},
-    {text: '消息', index: '3', route: '/'},
+    {text: '消息', index: '3', route: '/message'},
   ];
 
   let dropBar = [

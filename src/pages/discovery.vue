@@ -6,7 +6,7 @@
         <navbar :isSingle="true" :header-left="'编辑推荐'" :header-right="'更多推荐 >>'"/>
         <tab-container v-model="topSelected">
           <tab-container-item itemId="0">
-            <article-item v-for="item,index in articles" :title="item" :isDetail="index == 0"
+            <article-item v-for="(item,index) in articles" :key="index" :title="item" :isDetail="index == 0"
                           :isDivide="index != 4"/>
           </tab-container-item>
         </tab-container>
@@ -17,10 +17,10 @@
         </navbar>
         <tab-container v-model="hotSelected">
           <tab-container-item itemId="0">
-            <brief-module v-for="item in dayHots" :info="item"/>
+            <brief-module v-for="(item,index) in dayHots" :key="index" :info="item"/>
           </tab-container-item>
           <tab-container-item itemId="1">
-            <brief-module v-for="item in monthHots" :info="item"/>
+            <brief-module v-for="(item,index) in monthHots" :key="index" :info="item"/>
           </tab-container-item>
         </tab-container>
       </div>

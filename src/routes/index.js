@@ -7,6 +7,7 @@ import sign from '../pages/sign'
 import home from '../pages/home'
 import topic from '../pages/topic'
 import discovery from '../pages/discovery'
+import message from '../pages/message'
 import testPage from '../pages/test'
 import test from '../components/common/TestEditor'
 
@@ -32,6 +33,11 @@ let route = new Router({
       name: 'discovery',
       component: discovery,
       alias: '/'
+    },
+    {
+      path: '/message',
+      name: 'message',
+      component: message
     },
     {
       path: '/test',

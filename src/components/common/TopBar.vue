@@ -20,7 +20,7 @@
           <div class="top-user-avatar"></div>
           <span>{{username}}</span>
           <div class="top-user-info-drop" v-if="isDropShow">
-            <div v-for="item in dropBar">
+            <div v-for="item in dropBar" @click="changePage(item.route)">
               <i :class="item.icon"></i>
               <span>{{item.text}}</span>
             </div>
@@ -42,10 +42,10 @@
   ];
 
   let dropBar = [
-    {text: '我的主页', index: '0', icon: 'iconfont icon-avatar'},
-    {text: '私信', index: '0', icon: 'iconfont icon-xinfeng'},
-    {text: '设置', index: '0', icon: 'iconfont icon-set1'},
-    {text: '退出', index: '0', icon: 'iconfont icon-hkquit'}
+    {text: '我的主页', index: '0', icon: 'iconfont icon-avatar', route: '/sign'},
+    {text: '私信', index: '1', icon: 'iconfont icon-xinfeng', route: '/sign'},
+    {text: '设置', index: '2', icon: 'iconfont icon-set1', route: '/sign'},
+    {text: '退出', index: '3', icon: 'iconfont icon-hkquit', route: '/sign'}
   ];
 
   export default {

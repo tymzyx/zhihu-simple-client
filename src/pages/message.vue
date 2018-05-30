@@ -6,6 +6,9 @@
         <div class="left-top">
           <h4>全部消息</h4>
         </div>
+        <div class="left-main">
+          您收到的消息会显示在这里
+        </div>
       </div>
       <div class="right-wrapper">
 
@@ -42,6 +45,14 @@
           margin: 12px 0;
           font-size: 14px;
         }
+      }
+
+      .left-main {
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        font-size: 13px;
+        color: #999;
       }
     }
 

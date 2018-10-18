@@ -10,16 +10,26 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
-
 Vue.use(VueQuillEditor)
 
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
+import VueI18n from 'vue-i18n'
+Vue.use(VueI18n)
+// 使用多文件管理不同的语言是一个好习惯：
+const i18n = new VueI18n({
+  // locale: LangStorage.getLang('zh'),  // 语言标识，后面会用做切换和将用户习惯存储到本地浏览器
+  locale: 'zh', // 语言标识
+  messages: {
+    'zh': require('./lang/zh'),
+    'en': require('./lang/en')
+  }
+})
+
 import axios from 'axios'
-Vue.prototype.$http = axios;
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 
@@ -27,6 +37,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  i18n,
   components: { App },
   template: '<App/>'
 })

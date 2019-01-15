@@ -11,6 +11,7 @@ import message from '../pages/message'
 import testPage from '../pages/test'
 import test from '../components/common/TestEditor'
 import testView from '../pages/test/view'
+import drag from '../pages/test/testDrag'
 
 let route = new Router({
   mode: 'history',
@@ -50,6 +51,11 @@ let route = new Router({
       path: '/testView',
       name: 'testView',
       component: testView
+    },
+    {
+      path: '/drag',
+      name: 'drag',
+      component: drag
     }
   ],
   scrollBehavior(to, from, savedPosition) {
